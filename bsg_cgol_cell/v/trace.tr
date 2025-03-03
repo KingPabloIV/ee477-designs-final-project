@@ -21,8 +21,163 @@
 # Set the update value to 0, then set enbale to 1 and test with 0-8 live neighbors
 # Set the update value to 1, then set enbale to 1 and test with 0-8 live neighbors
 
+# Update, value = 1
 
 
+
+# Update, update_val = 0
+0001__0_0_00000000
+# Recv 0, live cell
+0010__000000000_0
+# Enable, 8 neighbors = 8'b########
+0001__1_0_00000000
+# Recv, o=3, live cell
+0010__00000000_0
+
+# Update, update_val = 0
+0001__0_0_00000000
+# Recv 0, live cell
+0010__000000000_0
+# Enable, 8 neighbors = 8'b########
+0001__1_0_00000001
+# Recv, o=3, live cell
+0010__00000000_0
+
+# Update, update_val = 0
+0001__0_0_00000000
+# Recv 0, live cell
+0010__000000000_0
+# Enable, 8 neighbors = 8'b########
+0001__1_0_00000011
+# Recv, o=3, live cell
+0010__00000000_0
+
+# Update, update_val = 0
+0001__0_0_00000000
+# Recv 0, live cell
+0010__000000000_0
+# Enable, 8 neighbors = 8'b########
+0001__1_0_00000111
+# Recv, o=3, live cell
+0010__00000000_1
+
+# Update, update_val = 0
+0001__0_0_00000000
+# Recv 0, live cell
+0010__000000000_0
+# Enable, 8 neighbors = 8'b########
+0001__1_0_00001111
+# Recv, o=3, live cell
+0010__00000000_0
+
+# Update, update_val = 0
+0001__0_0_00000000
+# Recv 0, live cell
+0010__000000000_0
+# Enable, 8 neighbors = 8'b########
+0001__1_0_00011111
+# Recv, o=3, live cell
+0010__00000000_0
+
+# Update, update_val = 0
+0001__0_0_00000000
+# Recv 0, live cell
+0010__000000000_0
+# Enable, 8 neighbors = 8'b########
+0001__1_0_00111111
+# Recv, o=3, live cell
+0010__00000000_0
+
+# Update, update_val = 0
+0001__0_0_00000000
+# Recv 0, live cell
+0010__000000000_0
+# Enable, 8 neighbors = 8'b########
+0001__1_0_01111111
+# Recv, o=3, live cell
+0010__00000000_0
+
+
+# Update, update_val = 1
+0001__0_1_00000000
+# Recv 1, live cell
+0010__000000000_1
+# Enable, 8 neighbors = 8'b########
+0001__1_0_00000000
+# Recv, o=3, live cell
+0010__00000000_0
+
+# Update, update_val = 1
+0001__0_1_00000000
+# Recv 1, live cell
+0010__000000000_1
+# Enable, 8 neighbors = 8'b########
+0001__1_0_00000001
+# Recv, o=3, live cell
+0010__00000000_0
+
+# Update, update_val = 1
+0001__0_1_00000000
+# Recv 1, live cell
+0010__000000000_1
+# Enable, 8 neighbors = 8'b########
+0001__1_0_00000011
+# Recv, o=3, live cell
+0010__00000000_0
+
+# Update, update_val = 1
+0001__0_1_00000000
+# Recv 1, live cell
+0010__000000000_1
+# Enable, 8 neighbors = 8'b########
+0001__1_0_00000111
+# Recv, o=3, live cell
+0010__00000000_1
+
+# Update, update_val = 1
+0001__0_1_00000000
+# Recv 1, live cell
+0010__000000000_1
+# Enable, 8 neighbors = 8'b########
+0001__1_0_00001111
+# Recv, o=3, live cell
+0010__00000000_1
+
+# Update, update_val = 1
+0001__0_1_00000000
+# Recv 1, live cell
+0010__000000000_1
+# Enable, 8 neighbors = 8'b########
+0001__1_0_00011111
+# Recv, o=3, live cell
+0010__00000000_0
+
+# Update, update_val = 1
+0001__0_1_00000000
+# Recv 1, live cell
+0010__000000000_1
+# Enable, 8 neighbors = 8'b########
+0001__1_0_00111111
+# Recv, o=3, live cell
+0010__00000000_0
+
+# Update, update_val = 1
+0001__0_1_00000000
+# Recv 1, live cell
+0010__000000000_1
+# Enable, 8 neighbors = 8'b########
+0001__1_0_01111111
+# Recv, o=3, live cell
+0010__00000000_0
+
+# Update, update_val = 1
+0001__0_1_00000000
+# Recv 1, live cell
+0010__000000000_1
+# Enable, 8 neighbors = 8'b########
+0001__1_0_11111111
+# Recv, o=3, live cell
+0010__00000000_0
 
 
 
