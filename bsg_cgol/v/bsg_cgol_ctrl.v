@@ -28,50 +28,80 @@ module bsg_cgol_ctrl #(
  } ctrl_states;
 
  // Internal Signals
- logic [game_len_width_lp-1:0] current_frame;
+ logic unsigned [game_len_width_lp-1:0] max_frames;
+ logic unsigned [game_len_width_lp-1:0] next_frame;
+ logic unsigned [game_len_width_lp-1:0] current_frame;
+
+
  ctrl_states state;
+ ctrl_states next_state;
 
- // Output Assignments
- assign ready_o = (state == IDLE);
- assign v_o = (state == READY);
- assign update_o = (state == UPDATING);
- assign en_o = (state == UPDATING) && (current_frame < frames_i);
+logic ready_out, v_out, update_out, en_out;
 
- // FSM Logic
- always_ff @(posedge clk_i) begin
-   if (reset_i) begin
-     state <= IDLE;
-     current_frame <= 0;
-   end
-   else begin
-     case (state)
-       IDLE: begin
-         if (v_i) begin
-           state <= UPDATING; // Start the game
-           current_frame <= 0;
-         end
-       end
+assign ready_o = ready_out;
+assign v_o = v_out;
+assign update_o = update_out;
+assign en_o = en_out;
 
-       UPDATING: begin
-         if (current_frame < frames_i) begin
-           current_frame <= current_frame + 1; // Count frames
-         end
-         else begin
-           state <= READY; // Game complete
-         end
-       end
 
-       READY: begin
-         if (yumi_i) begin
-           state <= IDLE; // Handshake complete, return to IDLE
-         end
-       end
+  // Output Assignments
 
-       default: begin
-         state <= IDLE; // Default case
-       end
-     endcase
-   end
- end
+  always @(posedge clk_i) begin
+    state <= reset_i ? IDLE : next_state;
+    current_frame <= reset_i ? 0 : next_frame;
+    // if (reset_i) begin
+    //   ready_o <= 0;
+    //   v_o <= 0;
+    //   update_o <= 0;
+    //   en_o <= 0;
+    // end
+    // else begin
+    //   ready_o <= ready_out;
+    //   v_o <= v_out;
+    //   update_o <= update_out;
+    //   en_o <= en_out;
+    // end
+  end
 
+  always_comb begin
+    ready_out = 0;
+    v_out = 0;
+    update_out = 0;
+    en_out = 0;
+    next_frame = 0;
+    case (state)
+      IDLE:  begin
+        if (v_i == 1) begin
+          update_out = 1;
+          next_state = UPDATING;
+        end else begin
+          ready_out = 1;
+          next_state = IDLE;
+        end
+      end
+
+      UPDATING: begin
+        if (current_frame < max_frames) begin
+          en_out = 1;
+          next_frame = current_frame + 1;
+          next_state = UPDATING;
+        end else begin
+          v_out = 1;
+          next_state = READY;
+        end
+      end
+
+      READY: begin
+        if (yumi_i == 1) begin
+          next_state = IDLE;
+        end else begin
+          v_out = 1;
+          next_state = READY;
+        end
+      end
+      default: begin
+        next_state = IDLE;
+      end
+    endcase
+  end
 endmodule
